@@ -109,3 +109,40 @@ class TransferCreate(BaseModel):
     product_id: UUID
     quantity: int
     lot_number: str | None = None
+
+
+class ReceiptItemCreate(BaseModel):
+    """Receipt item create schema."""
+    product_id: UUID
+    cell_id: UUID
+    quantity: int
+    lot_number: str | None = None
+    expiry_date: date | None = None
+
+
+class ReceiptResponse(BaseModel):
+    """Receipt response schema."""
+    id: UUID
+    tenant_id: UUID
+    receipt_number: str
+    status: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class TransferResponse(BaseModel):
+    """Transfer response schema."""
+    id: UUID
+    tenant_id: UUID
+    product_id: UUID
+    from_cell_id: UUID
+    to_cell_id: UUID
+    quantity: int
+    status: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
